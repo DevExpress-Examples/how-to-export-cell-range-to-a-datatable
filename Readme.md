@@ -3,14 +3,16 @@
 
 * [Form1.cs](./CS/ExportToDataTableExample/Form1.cs) (VB: [Form1.vb](./VB/ExportToDataTableExample/Form1.vb))
 <!-- default file list end -->
-# How to export cell range to a DataTable
+# How to export a cell range to a DataTable
 
+This example illustrates how you can export a cell range to a System.Data.DataTable object.
 
-<p>This example illustrates how you can export worksheet cell range to a System.Data.DataTable object.</p>
-<p>The following steps are required:</p>
-<p>1) Add a reference to the <strong>DevExpress.Docs.vX.Y.dll</strong> assembly to your project containing the SpreadsheetControl. Note that distribution of this assembly requires <a href="https://www.devexpress.com/Products/NET/Document-Server/pricing.xml">a license to the DevExpress Document Server or the DevExpress Universal Subscription</a>.<br /> 2) Create the <strong>DevExpress.Spreadsheet.Export.DataTableExporter</strong> instance using the <strong>DevExpress.Spreadsheet.Worksheet.CreateDataTableExporter</strong> method.<br /> 3) Call the <strong>Export </strong>method of the DataTableExporter.</p>
-<p>You can create an empty DataTable by using the <strong>CreateDataTable </strong>method of the DataTableExporter. The column names are obtained from headings of the cell range, and the column data types are extracted from cell data types of the first row of a range.<br /> The DataTableExporter contains various options that enables you to specify how cell data are processed before storing them in a DataTable.</p>
+The following steps are required:
 
-<br/>
+1) Add a reference to the **DevExpress.Docs.dll** assembly to your Spreadsheet project. The distribution of this assembly requires <a href="https://www.devexpress.com/products/net/office-file-api/">a license to the DevExpress Office File API or DevExpress Universal Subscription</a>.
 
+2) Use the **DevExpress.Spreadsheet.Worksheet.CreateDataTableExporter** method to create a **DevExpress.Spreadsheet.Export.DataTableExporter** instance.
 
+3) Call the DataTableExporter's **Export** method.
+
+You can use the **Worksheet.CreateDataTable** method to create an empty DataTable from a cell range. This method obtains column names from the range headings, and determines the column data types based on the first row of the specified range.
