@@ -23,7 +23,7 @@ Namespace ExportToDataTableExample
             End If
 '            #Region "#SimpleDataExport"
             Dim worksheet As Worksheet = spreadsheetControl1.Document.Worksheets.ActiveWorksheet
-            Dim range As Range = worksheet.Selection
+            Dim range As CellRange = worksheet.Selection
             Dim rangeHasHeaders As Boolean = Me.barCheckItemHasHeaders1.Checked
 
             ' Create a data table with column names obtained from the first row in a range if it has headers.
@@ -57,7 +57,7 @@ Namespace ExportToDataTableExample
         Private Sub ExportSelectionStopOnEmptyRow()
 '            #Region "#StopExportOnEmptyRow"
             Dim worksheet As Worksheet = spreadsheetControl1.Document.Worksheets.ActiveWorksheet
-            Dim range As Range = worksheet.Selection
+            Dim range As CellRange = worksheet.Selection
             ' Determine whether the first row in a range contains headers.
             Dim rangeHasHeaders As Boolean = Me.barCheckItemHasHeaders1.Checked
             ' Determine whether an empty row must stop conversion.
@@ -86,7 +86,7 @@ Namespace ExportToDataTableExample
         Private Sub barButtonItemUseExporterOptions_ItemClick(ByVal sender As Object, ByVal e As DevExpress.XtraBars.ItemClickEventArgs) Handles barButtonItemUseExporterOptions.ItemClick
 '            #Region "#DataExportWithOptions"
             Dim worksheet As Worksheet = spreadsheetControl1.Document.Worksheets(0)
-            Dim range As Range = worksheet.Tables(0).Range
+            Dim range As CellRange = worksheet.Tables(0).Range
 
             ' Create a data table with column names obtained from the first row in a range.
             ' Column data types are obtained from cell value types of cells in the first data row of the worksheet range.
@@ -112,7 +112,7 @@ Namespace ExportToDataTableExample
         #Region "#DataExportWithCustomConverter"
         Private Sub barButtonItemUseCustomConverter_ItemClick(ByVal sender As Object, ByVal e As DevExpress.XtraBars.ItemClickEventArgs) Handles barButtonItemUseCustomConverter.ItemClick
             Dim worksheet As Worksheet = spreadsheetControl1.Document.Worksheets(0)
-            Dim range As Range = worksheet.Tables(0).Range
+            Dim range As CellRange = worksheet.Tables(0).Range
 
             ' Create a data table with column names obtained from the first row in a range.
             ' Column data types are obtained from cell value types of cells in the first data row of the worksheet range.
