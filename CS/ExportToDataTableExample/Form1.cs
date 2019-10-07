@@ -25,7 +25,7 @@ namespace ExportToDataTableExample
             }
             #region #SimpleDataExport
             Worksheet worksheet = spreadsheetControl1.Document.Worksheets.ActiveWorksheet;
-            Range range = worksheet.Selection;
+            CellRange range = worksheet.Selection;
             bool rangeHasHeaders = this.barCheckItemHasHeaders1.Checked;
             
             // Create a data table with column names obtained from the first row in a range if it has headers.
@@ -62,7 +62,7 @@ namespace ExportToDataTableExample
         private void ExportSelectionStopOnEmptyRow() {
             #region #StopExportOnEmptyRow
             Worksheet worksheet = spreadsheetControl1.Document.Worksheets.ActiveWorksheet;
-            Range range = worksheet.Selection;
+            CellRange range = worksheet.Selection;
             // Determine whether the first row in a range contains headers.
             bool rangeHasHeaders = this.barCheckItemHasHeaders1.Checked;
             // Determine whether an empty row must stop conversion.
@@ -92,7 +92,7 @@ namespace ExportToDataTableExample
         {
             #region #DataExportWithOptions
             Worksheet worksheet = spreadsheetControl1.Document.Worksheets[0];
-            Range range = worksheet.Tables[0].Range;
+            CellRange range = worksheet.Tables[0].Range;
             
             // Create a data table with column names obtained from the first row in a range.
             // Column data types are obtained from cell value types of cells in the first data row of the worksheet range.
@@ -119,7 +119,7 @@ namespace ExportToDataTableExample
         private void barButtonItemUseCustomConverter_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Worksheet worksheet = spreadsheetControl1.Document.Worksheets[0];
-            Range range = worksheet.Tables[0].Range;
+            CellRange range = worksheet.Tables[0].Range;
             
             // Create a data table with column names obtained from the first row in a range.
             // Column data types are obtained from cell value types of cells in the first data row of the worksheet range.
