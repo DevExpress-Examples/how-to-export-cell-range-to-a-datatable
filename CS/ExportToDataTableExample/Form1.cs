@@ -1,6 +1,7 @@
 ﻿#region #usings
 using DevExpress.Spreadsheet;
 using DevExpress.Spreadsheet.Export;
+using DevExpress.XtraEditors;
 #endregion #usings
 using System;
 using System.Data;
@@ -185,20 +186,22 @@ namespace ExportToDataTableExample
         #region #ShowResultForm
         Form ShowResult(DataTable result)
         {
-            Form newForm = new Form();
-            newForm.Width = 600;
-            newForm.Height = 300;
+            using (XtraForm newForm = new XtraForm())
+            {
+                newForm.Width = 600;
+                newForm.Height = 300;
 
-            DevExpress.XtraGrid.GridControl grid = new DevExpress.XtraGrid.GridControl();
-            grid.Dock = DockStyle.Fill;
-            grid.DataSource = result;
+                DevExpress.XtraGrid.GridControl grid = new DevExpress.XtraGrid.GridControl();
+                grid.Dock = DockStyle.Fill;
+                grid.DataSource = result;
 
-            newForm.Controls.Add(grid);
-            grid.ForceInitialize();
-            ((DevExpress.XtraGrid.Views.Grid.GridView)grid.FocusedView).OptionsView.ShowGroupPanel = false;
+                newForm.Controls.Add(grid);
+                grid.ForceInitialize();
+                ((DevExpress.XtraGrid.Views.Grid.GridView)grid.FocusedView).OptionsView.ShowGroupPanel = false;
 
-            newForm.ShowDialog(this);
-            return newForm;
+                newForm.ShowDialog(this);
+                return newForm;
+            }
         }
         #endregion #ShowResultForm
     }

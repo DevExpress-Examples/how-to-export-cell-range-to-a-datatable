@@ -5,6 +5,8 @@ Imports DevExpress.Spreadsheet.Export
 Imports System
 Imports System.Data
 Imports System.Windows.Forms
+Imports DevExpress.Skins
+Imports DevExpress.XtraEditors
 
 Namespace ExportToDataTableExample
     Partial Public Class Form1
@@ -176,20 +178,21 @@ Namespace ExportToDataTableExample
 
         #Region "#ShowResultForm"
         Private Function ShowResult(ByVal result As DataTable) As Form
-            Dim newForm As New Form()
-            newForm.Width = 600
-            newForm.Height = 300
+            Using newForm As New XtraForm()
+                newForm.Width = 600
+                newForm.Height = 300
 
-            Dim grid As New DevExpress.XtraGrid.GridControl()
-            grid.Dock = DockStyle.Fill
-            grid.DataSource = result
+                Dim grid As New DevExpress.XtraGrid.GridControl()
+                grid.Dock = DockStyle.Fill
+                grid.DataSource = result
 
-            newForm.Controls.Add(grid)
-            grid.ForceInitialize()
-            CType(grid.FocusedView, DevExpress.XtraGrid.Views.Grid.GridView).OptionsView.ShowGroupPanel = False
+                newForm.Controls.Add(grid)
+                grid.ForceInitialize()
+                CType(grid.FocusedView, DevExpress.XtraGrid.Views.Grid.GridView).OptionsView.ShowGroupPanel = False
 
-            newForm.ShowDialog(Me)
-            Return newForm
+                newForm.ShowDialog(Me)
+                Return newForm
+            End Using
         End Function
         #End Region ' #ShowResultForm
     End Class
