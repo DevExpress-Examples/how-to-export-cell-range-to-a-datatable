@@ -32,17 +32,18 @@ namespace ExportToDataTableExample
             // Create a data table with column names obtained from the first row in a range if it has headers.
             // Column data types are obtained from cell value types of cells in the first data row of the worksheet range.
             DataTable dataTable = worksheet.CreateDataTable(range, rangeHasHeaders);
-
+            
             //Validate cell value types. If cell value types in a column are different, the column values are exported as text.
-            for (int col = 0; col < range.ColumnCount; col++)
-            {
-                CellValueType cellType = range[0, col].Value.Type;
-                for (int r = 1; r < range.RowCount; r++)
-                {
-                    if (cellType != range[r, col].Value.Type)
-                    {
-                        dataTable.Columns[col].DataType = typeof(string);
-                        break;
+            int firstDataRowIndex = rangeHasHeaders ? 1 : 0;
+            int rowCount = range.RowCount;
+            if (firstDataRowIndex < rowCount) {
+                for (int col = 0; col < range.ColumnCount; col++) {
+                    CellValueType cellType = range[firstDataRowIndex, col].Value.Type;
+                    for (int r = firstDataRowIndex + 1; r < rowCount; r++) {
+                        if (cellType != range[r, col].Value.Type) {
+                            dataTable.Columns[col].DataType = typeof(string);
+                            break;
+                        }
                     }
                 }
             }
