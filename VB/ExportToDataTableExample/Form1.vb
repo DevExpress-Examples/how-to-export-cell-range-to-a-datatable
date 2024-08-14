@@ -27,21 +27,25 @@ Namespace ExportToDataTableExample
             Dim worksheet As Worksheet = spreadsheetControl1.Document.Worksheets.ActiveWorksheet
             Dim range As CellRange = worksheet.Selection
             Dim rangeHasHeaders As Boolean = Me.barCheckItemHasHeaders1.Checked
-
+            
             ' Create a data table with column names obtained from the first row in a range if it has headers.
             ' Column data types are obtained from cell value types of cells in the first data row of the worksheet range.
             Dim dataTable As DataTable = worksheet.CreateDataTable(range, rangeHasHeaders)
-
+            
             'Validate cell value types. If cell value types in a column are different, the column values are exported as text.
-            For col As Integer = 0 To range.ColumnCount - 1
-                Dim cellType As CellValueType = range(0, col).Value.Type
-                For r As Integer = 1 To range.RowCount - 1
-                    If cellType <> range(r, col).Value.Type Then
-                        dataTable.Columns(col).DataType = GetType(String)
-                        Exit For
-                    End If
-                Next r
-            Next col
+            Dim firstDataRowIndex As Integer = If(rangeHasHeaders, 1, 0)
+            Dim rowCount As Integer = range.RowCount
+            If firstDataRowIndex < rowCount Then
+            	For col As Integer = 0 To range.ColumnCount - 1
+            		Dim cellType As CellValueType = range(firstDataRowIndex, col).Value.Type
+            		For r As Integer = firstDataRowIndex + 1 To rowCount - 1
+            			If cellType IsNot range(r, col).Value.Type Then
+            				dataTable.Columns(col).DataType = GetType(String)
+            				Exit For
+            			End If
+            		Next r
+            	Next col
+            End If
 
             ' Create the exporter that obtains data from the specified range, 
             ' skips the header row (if required) and populates the previously created data table. 
