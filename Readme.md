@@ -23,7 +23,7 @@ The following steps are required:
 
 You can use the **Worksheet.CreateDataTable** method to create an empty DataTable from a cell range. This method obtains column names from the range headings, and determines the column data types based on the first row of the specified range.
 <!-- feedback -->
-## Does this example address your development requirements/objectives?
+## Does This Example Address Your Development Requirements/Objectives?
 
 [<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=how-to-export-cell-range-to-a-datatable&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=how-to-export-cell-range-to-a-datatable&~~~was_helpful=no)
 
